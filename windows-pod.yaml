@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: windows-pod
+spec:
+  containers:
+  - name: windows-container
+    image: mcr.microsoft.com/windows/servercore:1809
+    command: ['powershell', 'Start-Sleep', '-s', '3600']
+  nodeSelector:
+    kubernetes.io/os: windows

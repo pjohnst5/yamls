@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-svc
+spec:
+  selector:
+    matchLabels:
+      run: nginx-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: nginx-svc
+    spec:
+      containers:
+      - name: nginx-svc
+        image: nginx
+        ports:
+        - containerPort: 80
+

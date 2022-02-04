@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basic-linux
+  labels:
+    app: basic-linux
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: basic-linux
+  template:
+    metadata:
+      labels:
+        app: basic-linux
+    spec:
+      containers:
+        - name: basic-linux
+          image: acnpublic.azurecr.io/toolbox:basic-linux
+          imagePullPolicy: Always

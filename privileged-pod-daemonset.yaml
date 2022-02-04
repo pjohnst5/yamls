@@ -1,0 +1,36 @@
+# run chroot /host once you're in to be ultra-privileged
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: privileged-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: privileged-pod
+  template:
+    metadata:
+      labels:
+        app: privileged-pod
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      hostNetwork: true
+      containers:
+        - name: toolbox
+          image: acnpublic.azurecr.io/toolbox:paulj
+          env:
+            - name: TCP_PORT
+              value: "8085"
+            - name: UDP_PORT
+              value: "8086"
+            - name: HTTP_PORT
+              value: "8087"
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /host
+              name: backdoor
+      volumes:
+        - name: backdoor
+          hostPath:
+            path: /

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: servercore
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: servercore
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: servercore
+    spec:
+      containers:
+        - name: servercore
+          image: mcr.microsoft.com/windows/servercore:ltsc2019
+          command: ["powershell", "while($true) {Start-Sleep -s 3600}"]
+          volumeMounts:
+            - mountPath: /host
+              name: host
+          ports:
+            - containerPort: 80
+      volumes:
+        - name: host
+          hostPath:
+            path: /

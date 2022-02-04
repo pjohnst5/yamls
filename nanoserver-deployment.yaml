@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nanoserver
+  labels:
+    app: nanoserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: nanoserver-pod
+      labels:
+        app: nanoserver
+    spec:
+      nodeSelector:
+        "beta.kubernetes.io/os": windows
+      securityContext:
+        windowsOptions:
+          hostProcess: true
+          runAsUserName: "NT AUTHORITY\\SYSTEM"
+      hostNetwork: true
+      containers:
+        - name: nanoserver-container
+          image: mcr.microsoft.com/windows/nanoserver:1809
+          command: ["powershell"]
+          args: ["sleep", "5000"]
+  selector:
+    matchLabels:
+      app: nanoserver

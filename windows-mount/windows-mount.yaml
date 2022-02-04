@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: windows-pod
+spec:
+  containers:
+  - name: windows-container
+    image: acndev.azurecr.io/azure-cni-windows-installer:1.0
+#    image: mcr.microsoft.com/windows/servercore:1903
+    volumeMounts:
+    - mountPath: /test-pd
+      name: cni-bin
+    imagePullPolicy: Always
+  volumes:
+  - name: cni-bin
+    hostPath:
+      path: /k/azurecni/bin
+  nodeSelector:
+    kubernetes.io/os: windows
+  restartPolicy: Never
+#  imagePullSecrets:
+#    - name: acndev.azurecr.io-key

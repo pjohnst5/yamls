@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: windows-tcp-test
+spec:
+  containers:
+  - name: windows-container
+    image: mcr.microsoft.com/dotnet/framework/samples:aspnetapp
+    command: ['powershell', 'New-Object', 'System.Net.Sockets.TcpClient("10.0.2.6", "3389")']
+  nodeSelector:
+    kubernetes.io/os: windows
+  restartPolicy: Never
