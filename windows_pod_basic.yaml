@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: windows-pod
+spec:
+  containers:
+    - name: windows-container
+      image: mcr.microsoft.com/windows/nanoserver:1809
+      command: ["powershell"]
+      args: ["sleep", "5000"]
+  nodeSelector:
+    kubernetes.io/os: windows
+  tolerations:
+    - key: "node.cloudprovider.kubernetes.io/uninitialized"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"

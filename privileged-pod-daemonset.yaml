@@ -17,7 +17,7 @@ spec:
       hostNetwork: true
       containers:
         - name: toolbox
-          image: acnpublic.azurecr.io/toolbox:paulj
+          image: matmerr/toolbox:lite
           env:
             - name: TCP_PORT
               value: "8085"

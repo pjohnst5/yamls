@@ -14,32 +14,33 @@ spec:
     spec:
       nodeSelector:
         "beta.kubernetes.io/os": windows
+        "kubernetes.io/hostname": akswin30005m9
       securityContext:
         windowsOptions:
           hostProcess: true
           runAsUserName: "NT AUTHORITY\\Local service"
       hostNetwork: true
       containers:
-      - name: aspnetapp-container
-        image: mcr.microsoft.com/windows/nanoserver:1809
-        command: ["powershell"]
-        args: ["sleep", "5000"]
-        volumeMounts:
-        - mountPath: /host
-          name: host
-        resources:
-          limits:
-            cpu: 1
-            memory: 800M
-          requests:
-            cpu: .1
-            memory: 300M
-        ports:
-          - containerPort: 8080
+        - name: aspnetapp-container
+          image: mcr.microsoft.com/windows/nanoserver:1809
+          command: ["powershell"]
+          args: ["sleep", "5000"]
+          volumeMounts:
+            - mountPath: /host
+              name: host
+          resources:
+            limits:
+              cpu: 1
+              memory: 800M
+            requests:
+              cpu: .1
+              memory: 300M
+          ports:
+            - containerPort: 8080
       volumes:
-      - name: host
-        hostPath:
-          path: /
+        - name: host
+          hostPath:
+            path: /
   selector:
     matchLabels:
       app: win

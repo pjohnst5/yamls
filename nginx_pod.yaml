@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx1
+  labels:
+    app: nginx
+spec:
+  nodeSelector:
+    dncnode: k8s-podpool-25044293-0
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - name: web
+          containerPort: 80
+          protocol: TCP
+      readinessProbe:
+        httpGet:
+          scheme: HTTPS
+          path: /index.html
+          port: 80
+        initialDelaySeconds: 10
+        periodSeconds: 5

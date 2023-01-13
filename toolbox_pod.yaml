@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toolbox
+  labels:
+    app: toolbox
+spec:
+  nodeSelector:
+    dncnode: k8s-podpool-25044293-1
+  containers:
+    - name: toolbox
+      image: matmerr/toolbox:lite
+      env:
+        - name: TCP_PORT
+          value: "8085"
+        - name: UDP_PORT
+          value: "8086"
+        - name: HTTP_PORT
+          value: "8087"
