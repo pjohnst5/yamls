@@ -1,0 +1,123 @@
+Created a dualstack cluster in centraluseuap in our runner sub
+
+Before changing dropgz to version from this commit
+
+root@aks-nodepool1-15758035-vmss000000:/app# cat /host/etc/cni/net.d/15-azure-swift-overlay.conflist
+{
+   "cniVersion":"0.3.0",
+   "name":"azure",
+   "plugins":[
+      {
+         "type":"azure-vnet",
+         "mode":"transparent",
+         "ipsToRouteViaHost":["169.254.20.10"],
+         "ipam":{
+            "type":"azure-cns",
+            "mode":"dualStackOverlay"
+         }
+      },
+      {
+         "type":"portmap",
+         "capabilities":{
+            "portMappings":true
+         },
+         "snat":true
+      }
+   ]
+}
+
+Edited the CNS daemseon init container to use new dropgz version from this commit
+
+
+Then logged in as a privileged pod, and as CNS restarted, ran azure-vnet --version
+
+
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.0
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.4
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.4
+root@aks-nodepool1-15758035-vmss000000:/app# /host/opt/cni/bin/azure-vnet --version
+Azure CNI Version v1.5.4
+
+root@aks-nodepool1-15758035-vmss000000:/app# cat /host/etc/cni/net.d/15-azure-swift-overlay.conflist
+{
+   "cniVersion":"0.3.0",
+   "name":"azure",
+   "plugins":[
+      {
+         "type":"azure-vnet",
+         "mode":"transparent",
+         "ipsToRouteViaHost":["169.254.20.10"],
+         "ipam":{
+            "type":"azure-cns",
+            "mode":"overlay"
+         }
+      },
+      {
+         "type":"portmap",
+         "capabilities":{
+            "portMappings":true
+         },
+         "snat":true
+      }
+   ]
+}
+
+Created linux daemonset, pod creation worked (see azure-vnet-1.5.4.log) and connectivity was good:
+Every 0.5s: kubectl get po -owide                                                                                                                 DESKTOP-CN08EUG: Fri Jun 16 15:53:32 2023
+
+NAME            READY   STATUS    RESTARTS   AGE   IP             NODE                                NOMINATED NODE   READINESS GATES
+priv-pod        1/1     Running   0          8d    10.224.0.5     aks-nodepool1-15758035-vmss000000   <none>           <none>
+toolbox-9n8h6   1/1     Running   0          11m   10.244.0.239   aks-nodepool1-15758035-vmss000000   <none>           <none>
+toolbox-dkqrt   1/1     Running   0          11m   10.244.1.82    aks-nodepool1-15758035-vmss000001   <none>           <none>
+
+root[rp](master) k exec -it toolbox-9n8h6 -- /bin/bash
+root@toolbox-9n8h6:/app# ifconfig
+eth0: flags=67<UP,BROADCAST,RUNNING>  mtu 1500
+        inet 10.244.0.239  netmask 255.255.0.0  broadcast 0.0.0.0
+        inet6 fdb1:b6d8:e50e:5d8e::f  prefixlen 64  scopeid 0x0<global>
+        inet6 fe80::60a5:cdff:fe60:a17b  prefixlen 64  scopeid 0x20<link>
+        ether 62:a5:cd:60:a1:7b  txqueuelen 1000  (Ethernet)
+        RX packets 8  bytes 788 (788.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7  bytes 654 (654.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+root@toolbox-9n8h6:/app# ping  10.244.1.82
+PING 10.244.1.82 (10.244.1.82) 56(84) bytes of data.
+64 bytes from 10.244.1.82: icmp_seq=1 ttl=62 time=2.00 ms
+64 bytes from 10.244.1.82: icmp_seq=2 ttl=62 time=0.944 ms
+^C
+--- 10.244.1.82 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 0.944/1.474/2.004/0.530 ms
+root@toolbox-9n8h6:/app#

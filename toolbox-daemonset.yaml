@@ -11,6 +11,8 @@ spec:
       labels:
         app: toolbox
     spec:
+      nodeSelector:
+        kubernetes.io/os: linux
       containers:
         - name: toolbox
           image: matmerr/toolbox:lite

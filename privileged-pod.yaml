@@ -1,0 +1,28 @@
+# run chroot /host once you're in to be ultra-privileged
+apiVersion: v1
+kind: Pod
+metadata:
+  name: priv-pod
+spec:
+  nodeSelector:
+    "kubernetes.io/hostname": aks-nodepool1-15758035-vmss000000
+  hostNetwork: true
+  containers:
+    - name: toolbox
+      image: matmerr/toolbox:lite
+      env:
+        - name: TCP_PORT
+          value: "8085"
+        - name: UDP_PORT
+          value: "8086"
+        - name: HTTP_PORT
+          value: "8087"
+      securityContext:
+        privileged: true
+      volumeMounts:
+        - mountPath: /host
+          name: backdoor
+  volumes:
+    - name: backdoor
+      hostPath:
+        path: /

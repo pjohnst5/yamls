@@ -10,3 +10,8 @@ spec:
       args: ["sleep", "5000"]
   nodeSelector:
     kubernetes.io/os: windows
+  tolerations:
+    - key: "node.cloudprovider.kubernetes.io/uninitialized"
+      operator: "Equal"
+      value: "true"
+      effect: "NoSchedule"

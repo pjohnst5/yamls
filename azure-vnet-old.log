@@ -1,0 +1,167 @@
+2023/06/08 18:19:40 [25157] CNI_COMMAND environment variable set to ADD
+2023/06/08 18:19:40 [25157] Acquiring process lock
+2023/06/08 18:19:40 [25157] Acquired process lock
+2023/06/08 18:19:40 [25157] Connection to telemetry socket failed: dial unix /var/run/azure-vnet-telemetry.sock: connect: no such file or directory
+2023/06/08 18:19:40 [25157] [Azure-Utils] pkill -f azure-vnet-telemetry
+2023/06/08 18:19:40 [25157] [Telemetry] Starting telemetry service process :/opt/cni/bin/azure-vnet-telemetry args:[-d /opt/cni/bin]
+2023/06/08 18:19:40 [25157] [Telemetry] Telemetry service started
+2023/06/08 18:19:40 [25157] Connected to telemetry service
+2023/06/08 18:19:40 [25157] [cni-net] Plugin azure-vnet version v1.5.0.
+2023/06/08 18:19:40 [25157] [cni-net] Running on Linux version 5.15.0-1039-azure (buildd@bos03-amd64-016) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #46-Ubuntu SMP Mon May 22 15:18:07 UTC 2023
+2023/06/08 18:19:40 [25157] [Azure-Utils] iptables --version
+2023/06/08 18:19:40 [25157] [cni-net] iptable version:iptables v1.8.7 (nf_tables), err:<nil>
+2023/06/08 18:19:40 [25157] [Azure-Utils] ebtables --version
+2023/06/08 18:19:40 [25157] [cni-net] ebtable version ebtables 1.8.7 (nf_tables), err:<nil>
+2023/06/08 18:19:40 [25157] [net] Network interface: {Index:1 MTU:65536 Name:lo HardwareAddr: Flags:up|loopback} with IP: [127.0.0.1/8 ::1/128]
+2023/06/08 18:19:40 [25157] [net] Network interface: {Index:2 MTU:1500 Name:eth0 HardwareAddr:60:45:bd:c5:1c:38 Flags:up|broadcast|multicast} with IP: [10.224.0.5/16 fe80::6245:bdff:fec5:1c38/64]
+2023/06/08 18:19:40 [25157] [net] Network interface: {Index:3 MTU:1500 Name:enP12454s1 HardwareAddr:60:45:bd:c5:1c:38 Flags:up|broadcast|multicast} with IP: []
+2023/06/08 18:19:40 [25157] [net] network store key not found
+2023/06/08 18:19:40 [25157] [cni-net] Plugin started.
+2023/06/08 18:19:40 [25157] [cni-net] Processing ADD command with args {ContainerID:8d431cea14d4a067a01ed497195ec8bb73a22c9dd5584edd4a789a96fcd2ce92 Netns:/var/run/netns/cni-4b8afc5c-b472-a145-5936-90cc5e77b43d IfName:eth0 Args:K8S_POD_INFRA_CONTAINER_ID=8d431cea14d4a067a01ed497195ec8bb73a22c9dd5584edd4a789a96fcd2ce92;K8S_POD_UID=c8145896-79a0-4d6f-8752-cb91c66f126e;IgnoreUnknown=1;K8S_POD_NAMESPACE=kube-system;K8S_POD_NAME=metrics-server-559658c49-9mgg8 Path:/opt/cni/bin StdinData:{"cniVersion":"0.3.0","dns":{},"executionMode":"v4swift","ipam":{"mode":"v4overlay","type":"azure-cns"},"ipsToRouteViaHost":["169.254.20.10"],"mode":"transparent","name":"azure","runtimeConfig":{"dns":{}},"type":"azure-vnet","windowsSettings":{}}}.
+2023/06/08 18:19:40 [25157] metrics-server-559658c49-9mgg8
+2023/06/08 18:19:40 [25157] Requesting IP for pod {PodName:metrics-server-559658c49-9mgg8 PodNamespace:kube-system} using ipconfigs {DesiredIPAddresses:[] PodInterfaceID:8d431cea-eth0 InfraContainerID:8d431cea14d4a067a01ed497195ec8bb73a22c9dd5584edd4a789a96fcd2ce92 OrchestratorContext:[123 34 80 111 100 78 97 109 101 34 58 34 109 101 116 114 105 99 115 45 115 101 114 118 101 114 45 53 53 57 54 53 56 99 52 57 45 57 109 103 103 56 34 44 34 80 111 100 78 97 109 101 115 112 97 99 101 34 58 34 107 117 98 101 45 115 121 115 116 101 109 34 125] Ifname:}
+2023/06/08 18:19:40 [25157] [cni-invoker-cns] Received info {podIPAddress:10.244.1.86 ncSubnetPrefix:16 ncPrimaryIP:10.244.1.0 ncGatewayIPAddress: hostSubnet:10.224.0.0/16 hostPrimaryIP:10.224.0.5 hostGateway:10.224.0.1} for pod {metrics-server-559658c49-9mgg8 kube-system}
+2023/06/08 18:19:40 [25157] [cni-net] Creating network azure.
+2023/06/08 18:19:40 [25157] [cni-net] Found master interface eth0.
+2023/06/08 18:19:40 [25157] [net] Added ExternalInterface eth0 for subnet 10.224.0.0/16.
+2023/06/08 18:19:40 [25157] [net] Save succeeded.
+2023/06/08 18:19:40 [25157] [cni-net] nwDNSInfo: { [] []}
+2023/06/08 18:19:40 [25157] [net] Creating network Id:azure MasterIfName:eth0 AdapterName: Mode:transparent Subnets:[{2 {10.244.0.0 ffff0000} 169.254.1.1 <nil>}] podsubnet:{0 {<nil> <nil>} <nil> <nil>} Enablesnatonhost:false.
+2023/06/08 18:19:40 [25157] opt map[] options map[NCPrimaryIPKey:10.244.1.0]
+2023/06/08 18:19:40 [25157] Transparent mode
+2023/06/08 18:19:40 [25157] [Azure-Utils] sysctl -w net.ipv6.conf.all.forwarding=1
+2023/06/08 18:19:40 [25157] [net] Created network azure on interface eth0.
+2023/06/08 18:19:40 [25157] [net] Save succeeded.
+2023/06/08 18:19:40 [25157] [cni-net] Created network azure with subnet 10.224.0.0/16.
+2023/06/08 18:19:40 [25157] [cni-net] Creating endpoint Id:8d431cea-eth0 ContainerID:8d431cea14d4a067a01ed497195ec8bb73a22c9dd5584edd4a789a96fcd2ce92 NetNsPath:/var/run/netns/cni-4b8afc5c-b472-a145-5936-90cc5e77b43d IfName:eth0 IfIndex:0 MacAddr: IPAddrs:[{10.244.1.86 ffff0000}] Gateways:[] Data:map[vethname:kube-system.metrics-server-559658c49-9mgg8].
+2023/06/08 18:19:40 [25157] Generate veth name based on the key provided kube-system.metrics-server-559658c49-9mgg8
+2023/06/08 18:19:40 [25157] Transparent client
+2023/06/08 18:19:40 [25157] [net] Creating veth pair azva82c92cb8aa azva82c92cb8aa2.
+2023/06/08 18:19:40 [25157] [net] Setting link azva82c92cb8aa state up.
+2023/06/08 18:19:40 [25157] [Azure-Utils] sysctl -w net.ipv6.conf.azva82c92cb8aa.accept_ra=0
+2023/06/08 18:19:40 [25157] Setting mtu 1500 on veth interface azva82c92cb8aa
+2023/06/08 18:19:40 [25157] [net] Adding route for the ip 10.244.1.86/32
+2023/06/08 18:19:40 [25157] [net] Adding IP route {Dst:{IP:10.244.1.86 Mask:ffffffff} Src:<nil> Gw:<nil> Protocol:0 DevName: Scope:0 Priority:0 Table:0} to link azva82c92cb8aa.
+2023/06/08 18:19:40 [25157] calling setArpProxy for azva82c92cb8aa
+2023/06/08 18:19:40 [25157] [Azure-Utils] echo 1 > /proc/sys/net/ipv4/conf/azva82c92cb8aa/proxy_arp
+2023/06/08 18:19:40 [25157] [net] Opening netns /var/run/netns/cni-4b8afc5c-b472-a145-5936-90cc5e77b43d.
+2023/06/08 18:19:40 [25157] [net] Setting link azva82c92cb8aa2 netns /var/run/netns/cni-4b8afc5c-b472-a145-5936-90cc5e77b43d.
+2023/06/08 18:19:40 [25157] [net] Entering netns /var/run/netns/cni-4b8afc5c-b472-a145-5936-90cc5e77b43d.
+2023/06/08 18:19:40 [25157] [net] Setting link azva82c92cb8aa2 state down.
+2023/06/08 18:19:40 [25157] [net] Setting link azva82c92cb8aa2 name eth0.
+2023/06/08 18:19:40 [25157] [Azure-Utils] sysctl -w net.ipv6.conf.eth0.accept_ra=0
+2023/06/08 18:19:40 [25157] [net] Setting link eth0 state up.
+2023/06/08 18:19:40 [25157] [net] Adding IP address 10.244.1.86/16 to link eth0.
+2023/06/08 18:19:40 [25157] [net] Deleting IP route {Dst:{IP:10.244.0.0 Mask:ffff0000} Src:<nil> Gw:<nil> Protocol:2 DevName: Scope:253 Priority:0 Table:0} from link eth0.
+2023/06/08 18:19:40 [25157] [net] Adding IP route {Dst:{IP:169.254.1.1 Mask:ffffffff} Src:<nil> Gw:<nil> Protocol:0 DevName: Scope:253 Priority:0 Table:0} to link eth0.
+2023/06/08 18:19:40 [25157] [net] Adding IP route {Dst:{IP:0.0.0.0 Mask:00000000} Src:<nil> Gw:169.254.1.1 Protocol:0 DevName: Scope:0 Priority:0 Table:0} to link eth0.
+2023/06/08 18:19:40 [25157] [net] Adding static arp for IP address 169.254.1.1/32 and MAC aa:aa:aa:aa:aa:aa in Container namespace
+2023/06/08 18:19:40 [25157] [net] Exiting netns /var/run/netns/cni-4b8afc5c-b472-a145-5936-90cc5e77b43d.
+2023/06/08 18:19:40 [25157] [net] Created endpoint &{Id:8d431cea-eth0 HnsId: SandboxKey: IfName:azva82c92cb8aa2 HostIfName:azva82c92cb8aa MacAddress:36:2f:7e:f0:5e:33 InfraVnetIP:{IP:<nil> Mask:<nil>} LocalIP: IPAddresses:[{IP:10.244.1.86 Mask:ffff0000}] Gateways:[0.0.0.0] DNS:{Suffix: Servers:[] Options:[]} Routes:[{Dst:{IP:0.0.0.0 Mask:00000000} Src:<nil> Gw:169.254.1.1 Protocol:0 DevName: Scope:0 Priority:0 Table:0}] VlanID:0 EnableSnatOnHost:false EnableInfraVnet:false EnableMultitenancy:false AllowInboundFromHostToNC:false AllowInboundFromNCToHost:false NetworkContainerID: NetworkNameSpace:/var/run/netns/cni-4b8afc5c-b472-a145-5936-90cc5e77b43d ContainerID:8d431cea14d4a067a01ed497195ec8bb73a22c9dd5584edd4a789a96fcd2ce92 PODName:metrics-server-559658c49-9mgg8 PODNameSpace:kube-system InfraVnetAddressSpace: NetNs:}.
+2023/06/08 18:19:40 [25157] [net] Save succeeded.
+2023/06/08 18:19:40 [25157] [cni-net] ADD command completed for pod metrics-server-559658c49-9mgg8 with IPs:[{Interface:<nil> Address:{IP:10.244.1.86 Mask:ffff0000} Gateway:169.254.1.1}] err:<nil>.
+2023/06/08 18:19:40 [25157] [cni-net] Plugin stopped.
+2023/06/08 18:19:40 [25157] Released process lock
+2023/06/08 18:19:40 [25207] CNI_COMMAND environment variable set to ADD
+2023/06/08 18:19:40 [25207] Acquiring process lock
+2023/06/08 18:19:40 [25207] Acquired process lock
+2023/06/08 18:19:40 [25207] Connected to telemetry service
+2023/06/08 18:19:40 [25207] [cni-net] Plugin azure-vnet version v1.5.0.
+2023/06/08 18:19:40 [25207] [cni-net] Running on Linux version 5.15.0-1039-azure (buildd@bos03-amd64-016) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #46-Ubuntu SMP Mon May 22 15:18:07 UTC 2023
+2023/06/08 18:19:40 [25207] [Azure-Utils] iptables --version
+2023/06/08 18:19:40 [25207] [cni-net] iptable version:iptables v1.8.7 (nf_tables), err:<nil>
+2023/06/08 18:19:40 [25207] [Azure-Utils] ebtables --version
+2023/06/08 18:19:40 [25207] [cni-net] ebtable version ebtables 1.8.7 (nf_tables), err:<nil>
+2023/06/08 18:19:40 [25207] [net] Network interface: {Index:1 MTU:65536 Name:lo HardwareAddr: Flags:up|loopback} with IP: [127.0.0.1/8 ::1/128]
+2023/06/08 18:19:40 [25207] [net] Network interface: {Index:2 MTU:1500 Name:eth0 HardwareAddr:60:45:bd:c5:1c:38 Flags:up|broadcast|multicast} with IP: [10.224.0.5/16 fe80::6245:bdff:fec5:1c38/64]
+2023/06/08 18:19:40 [25207] [net] Network interface: {Index:3 MTU:1500 Name:enP12454s1 HardwareAddr:60:45:bd:c5:1c:38 Flags:up|broadcast|multicast} with IP: []
+2023/06/08 18:19:40 [25207] [net] Network interface: {Index:5 MTU:1500 Name:azva82c92cb8aa HardwareAddr:aa:aa:aa:aa:aa:aa Flags:up|broadcast|multicast} with IP: [fe80::a8aa:aaff:feaa:aaaa/64]
+2023/06/08 18:19:40 [25207] [net] Restored state
+2023/06/08 18:19:40 [25207] Number of endpoints: 1
+2023/06/08 18:19:40 [25207] [cni-net] Plugin started.
+2023/06/08 18:19:40 [25207] [cni-net] Processing ADD command with args {ContainerID:0580491a5b46b3a903568c331a71c507ee625652853c31feba68c07b5526c888 Netns:/var/run/netns/cni-7f4ec71f-b02c-400e-4278-27587e068a8b IfName:eth0 Args:IgnoreUnknown=1;K8S_POD_NAMESPACE=kube-system;K8S_POD_NAME=metrics-server-559658c49-gv49p;K8S_POD_INFRA_CONTAINER_ID=0580491a5b46b3a903568c331a71c507ee625652853c31feba68c07b5526c888;K8S_POD_UID=70f85a06-c3b6-4f25-941f-fa76d1a46383 Path:/opt/cni/bin StdinData:{"cniVersion":"0.3.0","dns":{},"executionMode":"v4swift","ipam":{"mode":"v4overlay","type":"azure-cns"},"ipsToRouteViaHost":["169.254.20.10"],"mode":"transparent","name":"azure","runtimeConfig":{"dns":{}},"type":"azure-vnet","windowsSettings":{}}}.
+2023/06/08 18:19:40 [25207] [cni-net] Found network azure with subnet 10.244.0.0/16.
+2023/06/08 18:19:40 [25207] metrics-server-559658c49-gv49p
+2023/06/08 18:19:40 [25207] Requesting IP for pod {PodName:metrics-server-559658c49-gv49p PodNamespace:kube-system} using ipconfigs {DesiredIPAddresses:[] PodInterfaceID:0580491a-eth0 InfraContainerID:0580491a5b46b3a903568c331a71c507ee625652853c31feba68c07b5526c888 OrchestratorContext:[123 34 80 111 100 78 97 109 101 34 58 34 109 101 116 114 105 99 115 45 115 101 114 118 101 114 45 53 53 57 54 53 56 99 52 57 45 103 118 52 57 112 34 44 34 80 111 100 78 97 109 101 115 112 97 99 101 34 58 34 107 117 98 101 45 115 121 115 116 101 109 34 125] Ifname:}
+2023/06/08 18:19:40 [25207] [cni-invoker-cns] Received info {podIPAddress:10.244.1.242 ncSubnetPrefix:16 ncPrimaryIP:10.244.1.0 ncGatewayIPAddress: hostSubnet:10.224.0.0/16 hostPrimaryIP:10.224.0.5 hostGateway:10.224.0.1} for pod {metrics-server-559658c49-gv49p kube-system}
+2023/06/08 18:19:40 [25207] [cni-net] Creating endpoint Id:0580491a-eth0 ContainerID:0580491a5b46b3a903568c331a71c507ee625652853c31feba68c07b5526c888 NetNsPath:/var/run/netns/cni-7f4ec71f-b02c-400e-4278-27587e068a8b IfName:eth0 IfIndex:0 MacAddr: IPAddrs:[{10.244.1.242 ffff0000}] Gateways:[] Data:map[vethname:kube-system.metrics-server-559658c49-gv49p].
+2023/06/08 18:19:40 [25207] Generate veth name based on the key provided kube-system.metrics-server-559658c49-gv49p
+2023/06/08 18:19:40 [25207] Transparent client
+2023/06/08 18:19:40 [25207] [net] Creating veth pair azva06e3247610 azva06e32476102.
+2023/06/08 18:19:40 [25207] [net] Setting link azva06e3247610 state up.
+2023/06/08 18:19:41 [25207] [Azure-Utils] sysctl -w net.ipv6.conf.azva06e3247610.accept_ra=0
+2023/06/08 18:19:41 [25207] Setting mtu 1500 on veth interface azva06e3247610
+2023/06/08 18:19:41 [25207] [net] Adding route for the ip 10.244.1.242/32
+2023/06/08 18:19:41 [25207] [net] Adding IP route {Dst:{IP:10.244.1.242 Mask:ffffffff} Src:<nil> Gw:<nil> Protocol:0 DevName: Scope:0 Priority:0 Table:0} to link azva06e3247610.
+2023/06/08 18:19:41 [25207] calling setArpProxy for azva06e3247610
+2023/06/08 18:19:41 [25207] [Azure-Utils] echo 1 > /proc/sys/net/ipv4/conf/azva06e3247610/proxy_arp
+2023/06/08 18:19:41 [25207] [net] Opening netns /var/run/netns/cni-7f4ec71f-b02c-400e-4278-27587e068a8b.
+2023/06/08 18:19:41 [25207] [net] Setting link azva06e32476102 netns /var/run/netns/cni-7f4ec71f-b02c-400e-4278-27587e068a8b.
+2023/06/08 18:19:41 [25207] [net] Entering netns /var/run/netns/cni-7f4ec71f-b02c-400e-4278-27587e068a8b.
+2023/06/08 18:19:41 [25207] [net] Setting link azva06e32476102 state down.
+2023/06/08 18:19:41 [25207] [net] Setting link azva06e32476102 name eth0.
+2023/06/08 18:19:41 [25207] [Azure-Utils] sysctl -w net.ipv6.conf.eth0.accept_ra=0
+2023/06/08 18:19:41 [25207] [net] Setting link eth0 state up.
+2023/06/08 18:19:41 [25207] [net] Adding IP address 10.244.1.242/16 to link eth0.
+2023/06/08 18:19:41 [25207] [net] Deleting IP route {Dst:{IP:10.244.0.0 Mask:ffff0000} Src:<nil> Gw:<nil> Protocol:2 DevName: Scope:253 Priority:0 Table:0} from link eth0.
+2023/06/08 18:19:41 [25207] [net] Adding IP route {Dst:{IP:169.254.1.1 Mask:ffffffff} Src:<nil> Gw:<nil> Protocol:0 DevName: Scope:253 Priority:0 Table:0} to link eth0.
+2023/06/08 18:19:41 [25207] [net] Adding IP route {Dst:{IP:0.0.0.0 Mask:00000000} Src:<nil> Gw:169.254.1.1 Protocol:0 DevName: Scope:0 Priority:0 Table:0} to link eth0.
+2023/06/08 18:19:41 [25207] [net] Adding static arp for IP address 169.254.1.1/32 and MAC aa:aa:aa:aa:aa:aa in Container namespace
+2023/06/08 18:19:41 [25207] [net] Exiting netns /var/run/netns/cni-7f4ec71f-b02c-400e-4278-27587e068a8b.
+2023/06/08 18:19:41 [25207] [net] Created endpoint &{Id:0580491a-eth0 HnsId: SandboxKey: IfName:azva06e32476102 HostIfName:azva06e3247610 MacAddress:9e:ee:4b:dc:2a:e4 InfraVnetIP:{IP:<nil> Mask:<nil>} LocalIP: IPAddresses:[{IP:10.244.1.242 Mask:ffff0000}] Gateways:[0.0.0.0] DNS:{Suffix: Servers:[] Options:[]} Routes:[{Dst:{IP:0.0.0.0 Mask:00000000} Src:<nil> Gw:169.254.1.1 Protocol:0 DevName: Scope:0 Priority:0 Table:0}] VlanID:0 EnableSnatOnHost:false EnableInfraVnet:false EnableMultitenancy:false AllowInboundFromHostToNC:false AllowInboundFromNCToHost:false NetworkContainerID: NetworkNameSpace:/var/run/netns/cni-7f4ec71f-b02c-400e-4278-27587e068a8b ContainerID:0580491a5b46b3a903568c331a71c507ee625652853c31feba68c07b5526c888 PODName:metrics-server-559658c49-gv49p PODNameSpace:kube-system InfraVnetAddressSpace: NetNs:}.
+2023/06/08 18:19:41 [25207] [net] Save succeeded.
+2023/06/08 18:19:41 [25207] [cni-net] ADD command completed for pod metrics-server-559658c49-gv49p with IPs:[{Interface:<nil> Address:{IP:10.244.1.242 Mask:ffff0000} Gateway:169.254.1.1}] err:<nil>.
+2023/06/08 18:19:41 [25207] [cni-net] Plugin stopped.
+2023/06/08 18:19:41 [25207] Released process lock
+2023/06/09 16:48:45 [1526660] CNI_COMMAND environment variable set to ADD
+2023/06/09 16:48:45 [1526660] Acquiring process lock
+2023/06/09 16:48:45 [1526660] Acquired process lock
+2023/06/09 16:48:45 [1526660] Connected to telemetry service
+2023/06/09 16:48:45 [1526660] [cni-net] Plugin azure-vnet version v1.5.3-16-ga68d6382f.
+2023/06/09 16:48:45 [1526660] [cni-net] Running on Linux version 5.15.0-1039-azure (buildd@bos03-amd64-016) (gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #46-Ubuntu SMP Mon May 22 15:18:07 UTC 2023
+2023/06/09 16:48:45 [1526660] [Azure-Utils] iptables --version
+2023/06/09 16:48:45 [1526660] [cni-net] iptable version:iptables v1.8.7 (nf_tables), err:<nil>
+2023/06/09 16:48:45 [1526660] [Azure-Utils] ebtables --version
+2023/06/09 16:48:45 [1526660] [cni-net] ebtable version ebtables 1.8.7 (nf_tables), err:<nil>
+2023/06/09 16:48:45 [1526660] [net] Network interface: {Index:1 MTU:65536 Name:lo HardwareAddr: Flags:up|loopback|running} with IP: [127.0.0.1/8 ::1/128]
+2023/06/09 16:48:45 [1526660] [net] Network interface: {Index:2 MTU:1500 Name:eth0 HardwareAddr:60:45:bd:c5:1c:38 Flags:up|broadcast|multicast|running} with IP: [10.224.0.5/16 fe80::6245:bdff:fec5:1c38/64]
+2023/06/09 16:48:45 [1526660] [net] Network interface: {Index:3 MTU:1500 Name:enP12454s1 HardwareAddr:60:45:bd:c5:1c:38 Flags:up|broadcast|multicast|running} with IP: []
+2023/06/09 16:48:45 [1526660] [net] Network interface: {Index:5 MTU:1500 Name:azva82c92cb8aa HardwareAddr:aa:aa:aa:aa:aa:aa Flags:up|broadcast|multicast|running} with IP: [fe80::a8aa:aaff:feaa:aaaa/64]
+2023/06/09 16:48:45 [1526660] [net] Network interface: {Index:7 MTU:1500 Name:azva06e3247610 HardwareAddr:aa:aa:aa:aa:aa:aa Flags:up|broadcast|multicast|running} with IP: [fe80::a8aa:aaff:feaa:aaaa/64]
+2023/06/09 16:48:45 [1526660] [net] Restored state
+2023/06/09 16:48:45 [1526660] Number of endpoints: 2
+2023/06/09 16:48:45 [1526660] [cni-net] Plugin started.
+2023/06/09 16:48:45 [1526660] [cni-net] Processing ADD command with args {ContainerID:a3fe98e0e81892223038a67d1cdc38d8ea90586a1859805eae4bcc08947fc4d0 Netns:/var/run/netns/cni-fd0aedb0-6d22-4b1b-a084-fea009d486ad IfName:eth0 Args:IgnoreUnknown=1;K8S_POD_NAMESPACE=default;K8S_POD_NAME=toolbox-p9ksb;K8S_POD_INFRA_CONTAINER_ID=a3fe98e0e81892223038a67d1cdc38d8ea90586a1859805eae4bcc08947fc4d0;K8S_POD_UID=37463f46-7281-47d0-bdef-6c49f20efda2 Path:/opt/cni/bin StdinData:{"cniVersion":"0.3.0","ipam":{"mode":"overlay","type":"azure-cns"},"ipsToRouteViaHost":["169.254.20.10"],"mode":"transparent","name":"azure","type":"azure-vnet"}}.
+2023/06/09 16:48:45 [1526660] [cni-net] Found network azure with subnet 10.244.0.0/16.
+2023/06/09 16:48:45 [1526660] toolbox-p9ksb
+2023/06/09 16:48:45 [1526660] Requesting IP for pod {PodName:toolbox-p9ksb PodNamespace:default} using ipconfigs {DesiredIPAddresses:[] PodInterfaceID:a3fe98e0-eth0 InfraContainerID:a3fe98e0e81892223038a67d1cdc38d8ea90586a1859805eae4bcc08947fc4d0 OrchestratorContext:[123 34 80 111 100 78 97 109 101 34 58 34 116 111 111 108 98 111 120 45 112 57 107 115 98 34 44 34 80 111 100 78 97 109 101 115 112 97 99 101 34 58 34 100 101 102 97 117 108 116 34 125] Ifname:}
+2023/06/09 16:48:45 [1526660] [cni-invoker-cns] Received info {podIPAddress:10.244.1.234 ncSubnetPrefix:16 ncPrimaryIP:10.244.1.0 ncGatewayIPAddress: hostSubnet:10.224.0.0/16 hostPrimaryIP:10.224.0.5 hostGateway:10.224.0.1} for pod {toolbox-p9ksb default}
+2023/06/09 16:48:45 [1526660] [cni-net] Creating endpoint Id:a3fe98e0-eth0 ContainerID:a3fe98e0e81892223038a67d1cdc38d8ea90586a1859805eae4bcc08947fc4d0 NetNsPath:/var/run/netns/cni-fd0aedb0-6d22-4b1b-a084-fea009d486ad IfName:eth0 IfIndex:0 MacAddr: IPAddrs:[{10.244.1.234 ffff0000}] Gateways:[] Data:map[vethname:default.toolbox-p9ksb].
+2023/06/09 16:48:45 [1526660] Generate veth name based on the key provided default.toolbox-p9ksb
+2023/06/09 16:48:45 [1526660] Transparent client
+2023/06/09 16:48:45 [1526660] [net] Creating veth pair azv82279c7f434 azv82279c7f4342.
+2023/06/09 16:48:45 [1526660] [net] Setting link azv82279c7f434 state up.
+2023/06/09 16:48:45 [1526660] [Azure-Utils] sysctl -w net.ipv6.conf.azv82279c7f434.accept_ra=0
+2023/06/09 16:48:45 [1526660] Setting mtu 1500 on veth interface azv82279c7f434
+2023/06/09 16:48:45 [1526660] [net] Adding route for the ip 10.244.1.234/32
+2023/06/09 16:48:45 [1526660] [net] Adding IP route {Dst:{IP:10.244.1.234 Mask:ffffffff} Src:<nil> Gw:<nil> Protocol:0 DevName: Scope:0 Priority:0 Table:0} to link azv82279c7f434.
+2023/06/09 16:48:45 [1526660] calling setArpProxy for azv82279c7f434
+2023/06/09 16:48:45 [1526660] [Azure-Utils] echo 1 > /proc/sys/net/ipv4/conf/azv82279c7f434/proxy_arp
+2023/06/09 16:48:45 [1526660] [net] Opening netns /var/run/netns/cni-fd0aedb0-6d22-4b1b-a084-fea009d486ad.
+2023/06/09 16:48:45 [1526660] [net] Setting link azv82279c7f4342 netns /var/run/netns/cni-fd0aedb0-6d22-4b1b-a084-fea009d486ad.
+2023/06/09 16:48:45 [1526660] [net] Entering netns /var/run/netns/cni-fd0aedb0-6d22-4b1b-a084-fea009d486ad.
+2023/06/09 16:48:45 [1526660] [net] Setting link azv82279c7f4342 state down.
+2023/06/09 16:48:45 [1526660] [net] Setting link azv82279c7f4342 name eth0.
+2023/06/09 16:48:45 [1526660] [Azure-Utils] sysctl -w net.ipv6.conf.eth0.accept_ra=0
+2023/06/09 16:48:45 [1526660] [net] Setting link eth0 state up.
+2023/06/09 16:48:45 [1526660] [net] Adding IP address 10.244.1.234/16 to link eth0.
+2023/06/09 16:48:45 [1526660] [net] Deleting IP route {Dst:{IP:10.244.0.0 Mask:ffff0000} Src:<nil> Gw:<nil> Protocol:2 DevName: Scope:253 Priority:0 Table:0} from link eth0.
+2023/06/09 16:48:45 [1526660] [net] Adding IP route {Dst:{IP:169.254.1.1 Mask:ffffffff} Src:<nil> Gw:<nil> Protocol:0 DevName: Scope:253 Priority:0 Table:0} to link eth0.
+2023/06/09 16:48:45 [1526660] [net] Adding IP route {Dst:{IP:0.0.0.0 Mask:00000000} Src:<nil> Gw:169.254.1.1 Protocol:0 DevName: Scope:0 Priority:0 Table:0} to link eth0.
+2023/06/09 16:48:45 [1526660] [net] Adding static arp for IP address 169.254.1.1/32 and MAC aa:aa:aa:aa:aa:aa in Container namespace
+2023/06/09 16:48:45 [1526660] [net] Exiting netns /var/run/netns/cni-fd0aedb0-6d22-4b1b-a084-fea009d486ad.
+2023/06/09 16:48:45 [1526660] [net] Created endpoint &{Id:a3fe98e0-eth0 HnsId: SandboxKey: IfName:azv82279c7f4342 HostIfName:azv82279c7f434 MacAddress:96:69:f0:e8:28:8b InfraVnetIP:{IP:<nil> Mask:<nil>} LocalIP: IPAddresses:[{IP:10.244.1.234 Mask:ffff0000}] Gateways:[0.0.0.0] DNS:{Suffix: Servers:[] Options:[]} Routes:[{Dst:{IP:0.0.0.0 Mask:00000000} Src:<nil> Gw:169.254.1.1 Protocol:0 DevName: Scope:0 Priority:0 Table:0}] VlanID:0 EnableSnatOnHost:false EnableInfraVnet:false EnableMultitenancy:false AllowInboundFromHostToNC:false AllowInboundFromNCToHost:false NetworkContainerID: NetworkNameSpace:/var/run/netns/cni-fd0aedb0-6d22-4b1b-a084-fea009d486ad ContainerID:a3fe98e0e81892223038a67d1cdc38d8ea90586a1859805eae4bcc08947fc4d0 PODName:toolbox-p9ksb PODNameSpace:default InfraVnetAddressSpace: NetNs:}.
+2023/06/09 16:48:45 [1526660] [net] Save succeeded.
+2023/06/09 16:48:45 [1526660] [cni-net] ADD command completed for pod toolbox-p9ksb with IPs:[{Interface:<nil> Address:{IP:10.244.1.234 Mask:ffff0000} Gateway:169.254.1.1}] err:<nil>.
+2023/06/09 16:48:45 [1526660] [cni-net] Plugin stopped.
+2023/06/09 16:48:45 [1526660] Released process lock

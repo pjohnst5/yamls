@@ -1,0 +1,9 @@
+Differences:
+dual stack cni conflist has one more exception list entry:
+"10.224.0.0/12"],
+
+We (dual stack) want 10.240.0.0/16 pod subnet
+
+Dual stack windows node ip is: 10.224.0.4
+
+Jaeryn's cluster made for us, pod subnet is 10.244.3.0/24

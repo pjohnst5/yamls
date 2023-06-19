@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: windows-pod
+  name: windows-pod-2
 spec:
   containers:
     - name: windows-container

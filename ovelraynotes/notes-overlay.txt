@@ -1,0 +1,68 @@
+My change (just replacing binary) worked ✅
+Replacing 'v4overlay' to just 'overlay' worked ✅
+Removing 'v4swift'worked ✅
+    - Pods on windows can ping each other (same node, diff node) and linux pods
+
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\inetpub\wwwroot> ping windows-daemonset-15ea-just-overlay-z2knj
+Ping request could not find host windows-daemonset-15ea-just-overlay-z2knj. Please check the name and try again.
+PS C:\inetpub\wwwroot> ^C
+PS C:\inetpub\wwwroot> ping 10.244.1.108
+
+Pinging 10.244.1.108 with 32 bytes of data:
+Reply from 10.244.1.108: bytes=32 time=3ms TTL=128
+Reply from 10.244.1.108: bytes=32 time=1ms TTL=128
+
+Ping statistics for 10.244.1.108:
+    Packets: Sent = 2, Received = 2, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 1ms, Maximum = 3ms, Average = 2ms
+Control-C
+PS C:\inetpub\wwwroot> ping 10.244.0.183
+
+Pinging 10.244.0.183 with 32 bytes of data:
+Reply from 10.244.0.183: bytes=32 time=1ms TTL=63
+Reply from 10.244.0.183: bytes=32 time=1ms TTL=63
+Reply from 10.244.0.183: bytes=32 time=1ms TTL=63
+Reply from 10.244.0.183: bytes=32 time=1ms TTL=63
+
+Ping statistics for 10.244.0.183:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 1ms, Maximum = 1ms, Average = 1ms
+PS C:\inetpub\wwwroot> ping 10.244.0.183
+
+Pinging 10.244.0.183 with 32 bytes of data:
+Reply from 10.244.0.183: bytes=32 time=1ms TTL=63
+Reply from 10.244.0.183: bytes=32 time=1ms TTL=63
+Reply from 10.244.0.183: bytes=32 time=4ms TTL=63
+
+Ping statistics for 10.244.0.183:
+    Packets: Sent = 3, Received = 3, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 1ms, Maximum = 4ms, Average = 2ms
+Control-C
+PS C:\inetpub\wwwroot> exit
+
+root[yamls](main) k get po -owide
+NAME                                                        READY   STATUS    RESTARTS   AGE     IP             NODE                                NOMINATED NODE   READINESS GATES
+privileged-daemonset-gjdqf                                  1/1     Running   0          11m     10.224.0.4     aks-nodepool1-78276142-vmss000000   <none>           <none>
+toolbox-kgg2j                                               1/1     Running   0          4m36s   10.244.0.183   aks-nodepool1-78276142-vmss000000   <none>           <none>
+windows-daemonset-15ea-just-overlay-and-rmv-v4swift-468xh   1/1     Running   0          12m     10.244.1.180   aksnpwin000000                      <none>           <none>
+windows-daemonset-15ea-just-overlay-and-rmv-v4swift-4w6sv   1/1     Running   0          12m     10.244.2.224   aksnpwin000001                      <none>           <none>
+windows-daemonset-15ea-just-overlay-qtgdq                   1/1     Running   0          15m     10.244.2.125   aksnpwin000001                      <none>           <none>
+windows-daemonset-15ea-just-overlay-z2knj                   1/1     Running   0          15m     10.244.1.108   aksnpwin000000                      <none>           <none>
+windows-daemonset-15ea-r8dh6                                1/1     Running   0          19m     10.244.1.167   aksnpwin000000                      <none>           <none>
+windows-daemonset-15ea-txv86                                1/1     Running   0          19m     10.244.2.15    aksnpwin000001                      <none>           <none>
+windows-daemonset-8q8fl                                     1/1     Running   0          50m     10.244.1.59    aksnpwin000000                      <none>           <none>
+windows-daemonset-a68-2hnf6                                 1/1     Running   0          23m     10.244.1.53    aksnpwin000000                      <none>           <none>
+windows-daemonset-a68-kvn4t                                 1/1     Running   0          23m     10.244.2.55    aksnpwin000001                      <none>           <none>
+windows-daemonset-d8-d96t6                                  1/1     Running   0          30m     10.244.1.103   aksnpwin000000                      <none>           <none>
+windows-daemonset-d8-gjq9b                                  1/1     Running   0          30m     10.244.2.216   aksnpwin000001                      <none>           <none>
+windows-daemonset-p7t5w                                     1/1     Running   0          50m     10.244.2.107   aksnpwin000001                      <none>           <none>
+windows-daemonset2-glg4f                                    1/1     Running   0          35m     10.244.1.69    aksnpwin000000                      <none>           <none>
+windows-daemonset2-lf9kd                                    1/1     Running   0          35m     10.244.2.70    aksnpwin000001                      <none>           <none>

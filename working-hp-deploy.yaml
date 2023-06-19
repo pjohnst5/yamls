@@ -14,7 +14,7 @@ spec:
     spec:
       nodeSelector:
         "beta.kubernetes.io/os": windows
-        "kubernetes.io/hostname": akswin30005m9
+        "kubernetes.io/hostname": aksnpwin000000
       securityContext:
         windowsOptions:
           hostProcess: true

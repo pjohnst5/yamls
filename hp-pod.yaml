@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostprocess-pod
+spec:
+  nodeSelector:
+    "beta.kubernetes.io/os": windows
+    "kubernetes.io/hostname": aksnpwin000000
+  securityContext:
+    windowsOptions:
+      hostProcess: true
+      runAsUserName: "NT AUTHORITY\\Local service"
+  hostNetwork: true
+  containers:
+    - name: aspnetapp-container
+      image: mcr.microsoft.com/dotnet/framework/samples:aspnetapp
+      command: ["powershell"]
+      args: ["sleep", "5000"]
+      volumeMounts:
+        - mountPath: /host
+          name: host
+  volumes:
+    - name: host
+      hostPath:
+        path: /
