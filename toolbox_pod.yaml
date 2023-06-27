@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: toolbox
+  name: toolbox1
   labels:
     app: toolbox
 spec:
   nodeSelector:
-    dncnode: k8s-podpool-25044293-1
+    dncnode: aks-podpool-12568644-vmss000000
   containers:
     - name: toolbox
       image: matmerr/toolbox:lite

@@ -1,19 +1,28 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: windows-daemonset 
+  name: windows-priv-daemonset 
 spec:
   selector:
     matchLabels:
-      app: windows-pod
+      app: windows-priv-pod
   template:
     metadata:
       labels:
-        app: windows-pod
+        app: windows-priv-pod
     spec:
+      securityContext:
+        windowsOptions:
+          hostProcess: true
+          runAsUserName: "NT AUTHORITY\\Local service"
+      hostNetwork: true
       containers:
-        - name: windows-container2
+        - name: windows-container
           image: mcr.microsoft.com/dotnet/framework/samples:aspnetapp
           command: ["powershell", "Start-Sleep", "-s", "3600"]
       nodeSelector:
         kubernetes.io/os: windows
+      volumes:
+        - name: host
+          hostPath:
+            path: /
