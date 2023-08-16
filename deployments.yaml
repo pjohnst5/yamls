@@ -1,0 +1,126 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agnhost-linux-deployment
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: agnhost-linux
+  template:
+    metadata:
+      labels:
+        app: agnhost-linux
+      name: agnhost-linux
+    spec:
+      containers:
+      - command:
+        - /agnhost
+        - netexec
+        - --http-port=8080
+        image: mcr.microsoft.com/aks/e2e/k8s-agnhost:2.39
+        imagePullPolicy: IfNotPresent
+        name: agnhost-linux
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+      nodeSelector:
+        kubernetes.io/os: linux
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: toolbox-linux-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: toolbox-linux
+  template:
+    metadata:
+      labels:
+        app: toolbox-linux
+      name: toolbox-linux
+    spec:
+      containers:
+        image: matmerr/toolbox:lite
+        imagePullPolicy: IfNotPresent
+        name: toolbox
+      nodeSelector:
+        kubernetes.io/os: linux
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agnhost-windows-deployment
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: agnhost-windows
+  template:
+    metadata:
+      labels:
+        app: agnhost-windows
+      name: agnhost-windows
+    spec:
+      containers:
+      - command:
+        - C:\agnhost
+        - netexec
+        - --http-port=8080
+        image: mcr.microsoft.com/aks/e2e/k8s-agnhost-windows:master.220722.3-windows-amd64
+        imagePullPolicy: IfNotPresent
+        name: agnhost-windows
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+      nodeSelector:
+        kubernetes.io/os: windows
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: curl-windows-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: curl-win
+  template:
+    metadata:
+      labels:
+        app: curl-win
+      name: curl-win
+    spec:
+      containers:
+      - command:
+        - powershell
+        - Start-Sleep
+        - "360000"
+        image: mcr.microsoft.com/windows/servercore:ltsc2022
+        imagePullPolicy: IfNotPresent
+        name: curl
+      nodeSelector:
+        kubernetes.io/os: windows
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+    

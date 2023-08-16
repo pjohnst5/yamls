@@ -14,7 +14,7 @@ spec:
       securityContext:
         windowsOptions:
           hostProcess: true
-          runAsUserName: "NT AUTHORITY\\Local service"
+          runAsUserName: "NT AUTHORITY\\system"
       hostNetwork: true
       containers:
         - name: windows-container

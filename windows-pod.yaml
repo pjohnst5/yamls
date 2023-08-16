@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: windows-pod
+  name: windows-pod2
 spec:
   containers:
-    - name: windows-container
+    - name: windows-container2
       image: mcr.microsoft.com/dotnet/framework/samples:aspnetapp
       command: ["powershell", "Start-Sleep", "-s", "3600"]
   nodeSelector:

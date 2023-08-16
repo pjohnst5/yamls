@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: toolbox
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: toolbox
+  template:
+    metadata:
+      labels:
+        app: toolbox
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+        - name: toolbox
+          image: matmerr/toolbox:lite
+          env:
+            - name: TCP_PORT
+              value: "8085"
+            - name: UDP_PORT
+              value: "8086"
+            - name: HTTP_PORT
+              value: "8087"
