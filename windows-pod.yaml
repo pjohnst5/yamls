@@ -8,4 +8,4 @@ spec:
       image: mcr.microsoft.com/dotnet/framework/samples:aspnetapp
       command: ["powershell", "Start-Sleep", "-s", "3600"]
   nodeSelector:
-    kubernetes.io/os: windows
+    kubernetes.io/hostname: aksnpwin000001

@@ -51,9 +51,9 @@ spec:
       name: toolbox-linux
     spec:
       containers:
-        image: matmerr/toolbox:lite
-        imagePullPolicy: IfNotPresent
-        name: toolbox
+        - image: matmerr/toolbox:lite
+          imagePullPolicy: IfNotPresent
+          name: toolbox
       nodeSelector:
         kubernetes.io/os: linux
       restartPolicy: Always
