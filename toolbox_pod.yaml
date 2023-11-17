@@ -9,7 +9,7 @@ spec:
     dncnode: aks-podpool-12568644-vmss000000
   containers:
     - name: toolbox
-      image: matmerr/toolbox:lite
+      image: acnpublic.azurecr.io/toolbox
       env:
         - name: TCP_PORT
           value: "8085"

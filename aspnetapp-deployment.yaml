@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: windows-deployment
+  name: win-dep
   labels:
     app: win
 spec:
-  replicas: 2
+  replicas: 10
   template:
     metadata:
       name: windows-pod
@@ -17,29 +17,6 @@ spec:
       containers:
       - name: aspnetapp-container
         image: mcr.microsoft.com/dotnet/framework/samples:aspnetapp
-        resources:
-          limits:
-            cpu: 1
-            memory: 800M
-          requests:
-            cpu: .1
-            memory: 300M
-        ports:
-          - containerPort: 80
   selector:
     matchLabels:
       app: win
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: windows-service
-  annotations:
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-spec:
-  type: LoadBalancer
-  ports:
-  - protocol: TCP
-    port: 80
-  selector:
-    app: win
